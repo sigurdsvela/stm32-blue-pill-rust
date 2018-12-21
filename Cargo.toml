@@ -25,10 +25,10 @@ stm32f103xx-hal = { git = "https://github.com/japaric/stm32f103xx-hal" }
 version = "0.5.0"
 
 [dependencies.cortex-m-rt]
-version = "0.5.0"
+version = "0.6.0"
 
 [dependencies.cortex-m-semihosting]
-version = "0.3.0"
+version = "0.3.2"
 
 [dependencies.panic-semihosting]
-version = "0.3.0"
+version = "0.5.1"
