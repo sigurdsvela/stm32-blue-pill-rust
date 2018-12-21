@@ -13,16 +13,17 @@ extern crate panic_semihosting;  //  Panic reporting functions, which transmit t
 extern crate stm32f103xx_hal as bluepill_hal;  //  Hardware Abstraction Layer (HAL) for STM32 Blue Pill.
 
 use core::fmt::Write;  //  Provides writeln() function for debug console output.
-use cortex_m_rt::ExceptionFrame;  //  Stack frame for exception handling.
+//use cortex_m_rt::ExceptionFrame;  //  Stack frame for exception handling.
 use cortex_m_semihosting::hio;  //  For displaying messages on the debug console.
 use bluepill_hal::delay::Delay;  //  Delay timer.
 use bluepill_hal::prelude::*;  //  Define HAL traits.
 use bluepill_hal::stm32f103xx::Peripherals;  //  Clocks, flash memory, GPIO for the STM32 Blue Pill.
 
 //  Blue Pill starts execution at function main().
-entry!(main);
+//entry!(main);
 
 //  Blue Pill starts execution here. "-> !" means this function will never return (because of the loop).
+#[entry]
 fn main() -> ! {
     //  Show "Hello, world!" on the debug console, which is shown in OpenOCD. "mut" means that this object is mutable, i.e. it can change.
     let mut debug_out = hio::hstdout().unwrap();
@@ -65,15 +66,15 @@ fn main() -> ! {
 }
 
 //  For any hard faults, show a message on the debug console and stop.
-exception!(HardFault, hard_fault);
+//exception!(HardFault, hard_fault);
 
-fn hard_fault(ef: &ExceptionFrame) -> ! {
-    panic!("Hard fault: {:#?}", ef);
-}
+//fn hard_fault(ef: &ExceptionFrame) -> ! {
+//    panic!("Hard fault: {:#?}", ef);
+//}
 
 //  For any unhandled interrupts, show a message on the debug console and stop.
-exception!(*, default_handler);
+//exception!(*, default_handler);
 
-fn default_handler(irqn: i16) {
-    panic!("Unhandled exception (IRQn = {})", irqn);
-}
+//fn default_handler(irqn: i16) {
+//    panic!("Unhandled exception (IRQn = {})", irqn);
+//}
